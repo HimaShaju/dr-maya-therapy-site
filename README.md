@@ -1,5 +1,5 @@
 # Dr. Maya Reynolds Therapy Website
 
-Stage 2 internship assignment project.
+Stage 2 internship assignment project for Grow My Therapy.
 
-Built with Next.js + Tailwind CSS.
+Built using Next.js + Tailwind CSS.
