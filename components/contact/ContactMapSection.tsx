@@ -1,66 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
-declare global {
-  interface Window {
-    google: any;
-  }
-}
-
 export default function ContactMapSection() {
-  const mapRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const initMap = () => {
-      if (!mapRef.current) return;
-
-      // ✅ exact location from your google maps link
-      const center = { lat: 34.0135747, lng: -118.5027436 };
-
-      const mapLink =
-        "https://www.google.com/maps/search/123th+Street+45+W,+Santa+Monica,+CA+90401/@34.0135747,-118.5027436,15z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D";
-
-      // ✅ map shows same zoom + same place
-      const map = new window.google.maps.Map(mapRef.current, {
-  center,
-  zoom: 15,
-  gestureHandling: "greedy",
-  disableDefaultUI: false,
-});
-
-const marker = new window.google.maps.Marker({
-  position: center,
-  map,
-  title: "123th Street 45 W, Santa Monica, CA 90401",
-});
-
-// ✅ marker click -> open link
-marker.addListener("click", () => {
-  window.open(mapLink, "_blank");
-});
-
-// ✅ map click (includes Santa Monica label click zone) -> open link
-map.addListener("click", () => {
-  window.open(mapLink, "_blank");
-});
-
-    };
-
-    // already loaded
-    if (window.google?.maps) {
-      initMap();
-      return;
-    }
-
-    // load script
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`;
-    script.async = true;
-    script.onload = initMap;
-    document.body.appendChild(script);
-  }, []);
-
   return (
     <section className="bg-[#447F98] py-24 text-white">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 lg:grid-cols-2 lg:gap-24">
@@ -71,9 +11,8 @@ map.addListener("click", () => {
           <div className="mt-10 text-[16px] leading-8 text-white/90">
             <p>123th Street 45 W</p>
 
-            {/* ✅ clickable location */}
             <a
-              href="https://www.google.com/maps/search/123th+Street+45+W,+Santa+Monica,+CA+90401/@34.0135747,-118.5027436,15z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D"
+              href="https://www.google.com/maps/search/123th+Street+45+W,+Santa+Monica,+CA+90401/@34.0135747,-118.5027436,15z/data=!3m1!4b1"
               target="_blank"
               rel="noreferrer"
               className="underline underline-offset-4 hover:opacity-80"
@@ -82,9 +21,7 @@ map.addListener("click", () => {
             </a>
           </div>
 
-          <h3 className="mt-14 text-[44px] font-semibold leading-[1.05]">
-            Hours
-          </h3>
+          <h3 className="mt-14 text-[44px] font-semibold leading-[1.05]">Hours</h3>
 
           <div className="mt-8 text-[16px] leading-8 text-white/90">
             <p>Monday – Friday</p>
@@ -92,11 +29,27 @@ map.addListener("click", () => {
           </div>
         </div>
 
-        {/* RIGHT MAP */}
+        {/* RIGHT MAP EMBED */}
         <div className="fade-up delay-300">
           <div className="relative w-full overflow-hidden rounded-sm bg-white shadow-sm">
-            <div ref={mapRef} className="h-[360px] w-full md:h-[420px]" />
+            <iframe
+              title="Santa Monica Office Map"
+              src="https://www.google.com/maps?q=123th%20Street%2045%20W,%20Santa%20Monica,%20CA%2090401&output=embed"
+              className="h-[360px] w-full md:h-[420px]"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
+
+          {/* ✅ Optional button under map */}
+          <a
+            href="https://www.google.com/maps/search/123th+Street+45+W,+Santa+Monica,+CA+90401/@34.0135747,-118.5027436,15z/data=!3m1!4b1"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 inline-flex w-full items-center justify-center border border-white/60 py-4 text-sm font-semibold uppercase tracking-widest transition hover:bg-white hover:text-[#447F98]"
+          >
+            Open in Google Maps →
+          </a>
         </div>
       </div>
     </section>
