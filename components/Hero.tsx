@@ -20,7 +20,7 @@ export default function Hero() {
 
         {/* RIGHT TEXT */}
         <div className="text-center lg:text-left">
-          <h1 className="fade-up delay-300 text-[25px] font-semibold leading-[1.05] tracking-tight text-[#447F98] sm:text-[40px] lg:text-[50px]">
+          <h1 className="fade-up delay-300 text-[25px] font-semibold leading-[1.05] tracking-tight text-[#447F98] sm:text-[40px] lg:text-[43px]">
             Anxiety & trauma therapy
             <br />
             in Santa Monica, CA

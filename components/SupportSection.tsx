@@ -20,7 +20,7 @@ export default function SupportSection() {
         <div className="flex flex-col justify-between bg-[#B9DBE1]">
           {/* TOP CONTENT */}
           <div className="px-10 py-20 lg:px-16 lg:py-24">
-            <h2 className="fade-up delay-300 text-[50px] font-semibold leading-[1.05] text-[#447F98]">
+            <h2 className="fade-up delay-300 text-[39px] font-semibold leading-[1.05] text-[#447F98]">
               You don’t have to do this <br />
               <span className="font-bold">all alone.</span>
             </h2>
